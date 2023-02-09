@@ -87,7 +87,14 @@ function fncGetList(currentPage){
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">가격</td>
 		<td class="ct_line02"></td>
+		<c:if test="${user.role ne 'admin' || empty user}">
+		<td class="ct_list_b">제조일자</td>	
+		</td>
+		</c:if>
+		<c:if test="${user.role eq 'admin'}">
 		<td class="ct_list_b">등록일</td>	
+		</td>
+		</c:if>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">현재상태</td>	
 	</tr>
@@ -109,8 +116,14 @@ function fncGetList(currentPage){
 		<td></td>
 		<td align="left">${product.price}</td>
 		<td></td>
+		<c:if test="${user.role ne 'admin' || empty user}">
+		<td align="left">${product.manuDate}
+		</td>
+		</c:if>
+		<c:if test="${user.role eq 'admin'}">
 		<td align="left">${product.regDate}
 		</td>
+		</c:if>
 		<td></td>
 		<td align="left">
 		<c:set var="tranCode" value="${fn:trim(product.proTranCode)}"/>

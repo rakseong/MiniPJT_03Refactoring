@@ -14,7 +14,6 @@ public class GetProductAction extends Action {
 		
 		int prodNo = Integer.parseInt(request.getParameter("productNo"));
 		String menu = request.getParameter("menu");
-		///
 		
 		ProductService productService = new ProductServiceImpl();
 		Product vo=productService.getProduct(prodNo);

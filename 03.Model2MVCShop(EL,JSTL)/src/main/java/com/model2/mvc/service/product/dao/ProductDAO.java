@@ -50,7 +50,7 @@ public class ProductDAO {
 	//상품 리스트 반환
 	public Map<String,Object> getProductList(Search search) throws Exception{
 		Connection con = DBUtil.getConnection();
-		
+		System.out.println("정상동작");
 		String sql = "SELECT p.*,NVL(t.tran_status_code,0) transaction_tran_code from product p, transaction t WHERE p.prod_no = t.prod_no(+) ";
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
@@ -88,7 +88,8 @@ public class ProductDAO {
 				pvo.setProdNo(rs.getInt("PROD_NO"));
 				pvo.setProdName(rs.getString("PROD_NAME"));
 				pvo.setProdDetail(rs.getString("PROD_DETAIL"));
-				pvo.setManuDate(rs.getString("MANUFACTURE_DAY"));
+				System.out.println(rs.getString("MANUFACTURE_DAY").substring(0,4)+"-"+rs.getString("MANUFACTURE_DAY").substring(4,6)+"-"+rs.getString("MANUFACTURE_DAY").substring(6));
+				pvo.setManuDate(rs.getString("MANUFACTURE_DAY").substring(0,4)+"-"+rs.getString("MANUFACTURE_DAY").substring(4,6)+"-"+rs.getString("MANUFACTURE_DAY").substring(6));
 				pvo.setPrice(rs.getInt("PRICE"));
 				pvo.setFileName(rs.getString("IMAGE_FILE"));
 				pvo.setRegDate(rs.getDate("REG_DATE"));
