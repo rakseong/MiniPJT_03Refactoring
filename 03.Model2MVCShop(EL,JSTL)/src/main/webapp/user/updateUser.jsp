@@ -7,7 +7,7 @@
 <%
 	User user=(User)request.getAttribute("user");
 %>/////////////////////// EL / JSTL 적용으로 주석 처리 //////////////////////// --%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <title>회원 정보 수정</title>

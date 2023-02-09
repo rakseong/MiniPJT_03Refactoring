@@ -10,7 +10,7 @@
 	}
 	String userId=(String)request.getAttribute("userId");
 %>/////////////////////// EL / JSTL 적용으로 주석 처리 //////////////////////// --%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <title>아이디 중복 확인</title>

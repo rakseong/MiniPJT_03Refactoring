@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
-
+<!DOCTYPE html>
 <html>
 <head>
 <title>로그인 화면</title>

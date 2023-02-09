@@ -1,6 +1,7 @@
 <%@page import="com.model2.mvc.service.domain.Product"%>
 <%@ page contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
 <html>
 <head>
 <title>상품등록</title>

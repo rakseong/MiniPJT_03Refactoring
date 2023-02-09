@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.model2.mvc.common.Search;
+import com.model2.mvc.common.util.CommonUtil;
 import com.model2.mvc.common.util.DBUtil;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
@@ -88,8 +89,7 @@ public class ProductDAO {
 				pvo.setProdNo(rs.getInt("PROD_NO"));
 				pvo.setProdName(rs.getString("PROD_NAME"));
 				pvo.setProdDetail(rs.getString("PROD_DETAIL"));
-				System.out.println(rs.getString("MANUFACTURE_DAY").substring(0,4)+"-"+rs.getString("MANUFACTURE_DAY").substring(4,6)+"-"+rs.getString("MANUFACTURE_DAY").substring(6));
-				pvo.setManuDate(rs.getString("MANUFACTURE_DAY").substring(0,4)+"-"+rs.getString("MANUFACTURE_DAY").substring(4,6)+"-"+rs.getString("MANUFACTURE_DAY").substring(6));
+				pvo.setManuDate(CommonUtil.toDateStr(rs.getString("MANUFACTURE_DAY")));
 				pvo.setPrice(rs.getInt("PRICE"));
 				pvo.setFileName(rs.getString("IMAGE_FILE"));
 				pvo.setRegDate(rs.getDate("REG_DATE"));

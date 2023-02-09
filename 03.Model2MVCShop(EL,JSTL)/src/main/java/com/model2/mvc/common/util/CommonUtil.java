@@ -48,8 +48,8 @@ public class CommonUtil {
 		else if (dateStr.length() != 8)
 			return dateStr;
 		else
-			return dateStr.substring(0, 4) + "/" + dateStr.substring(4, 6)
-					+ "/" + dateStr.substring(6, 8);
+			return dateStr.substring(0, 4) + "-" + dateStr.substring(4, 6)
+					+ "-" + dateStr.substring(6, 8);
 	}
 
 	public static String toDateStr(Timestamp date) {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
