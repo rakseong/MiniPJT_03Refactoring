@@ -29,7 +29,8 @@ public class ProductDAO {
 	//상품 검색
 	public Product findProduct(int productNo) throws Exception{
 		Connection con = DBUtil.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("SELECT * FROM product where PROD_NO=?");
+		PreparedStatement pstmt = con.prepareStatement("SELECT p.*,NVL(t.tran_status_code,0) transaction_tran_code from product p, transaction t "
+				+ " WHERE p.prod_no = t.prod_no(+) AND p.prod_no=?");
 		pstmt.setInt(1,productNo);
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -42,6 +43,7 @@ public class ProductDAO {
 			product.setPrice(rs.getInt("PRICE"));
 			product.setFileName(rs.getString("IMAGE_FILE"));
 			product.setRegDate(rs.getDate("REG_DATE"));
+			product.setProTranCode(rs.getString("TRANSACTION_TRAN_CODE"));
 		}
 		con.close();
 		
@@ -58,11 +60,19 @@ public class ProductDAO {
 				sql += " AND prod_no LIKE '%" + search.getSearchKeyword()+"%'";
 			} else if (search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
 				sql += " AND prod_name LIKE '%" + search.getSearchKeyword()+"%'";
-			} else if (search.getSearchCondition().equals("2") && !search.getSearchKeyword().equals("")) {
-				sql += " AND price LIKE '%" + search.getSearchKeyword()+"%'";
+			}
+			
+			if(search.getOrderStandard().equals("1") && !search.getOrderStandard().equals("")){
+				sql += " ORDER BY p.price ASC ";
+			}else if(search.getOrderStandard().equals("2") && !search.getOrderStandard().equals("")){
+				sql += " ORDER BY p.price DESC ";
+			}else if(search.getOrderStandard().equals("0") && !search.getOrderStandard().equals("")){
+				sql += " ORDER BY p.prod_no";
+			}else {
+				sql += " ORDER BY p.prod_name";
 			}
 		}
-		sql += " ORDER BY p.prod_no";
+		
 //		sql = "SELECT p.*,pc.*, NVL(t.tran_status_code,0) transaction_tran_code "
 //				+ " FROM (select ROWNUM num, product.* from product "+sqlplus+") p, "
 //						+ "(select COUNT(*) total from product "+sqlplus+") pc ,transaction t "

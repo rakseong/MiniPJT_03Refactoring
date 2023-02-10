@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -18,13 +19,12 @@ public class ListProductAction extends Action {
 		Search search = new Search();
 		
 		String menu = request.getParameter("menu");
-		
 		int currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+		search.setOrderStandard(CommonUtil.null2str(request.getParameter("orderStandard")));
 		search.setSearchCondition(CommonUtil.null2str(request.getParameter("searchCondition")));
 		search.setSearchKeyword(CommonUtil.null2str(request.getParameter("searchKeyword")));
 		search.setCurrentPage(currentPage);
@@ -33,10 +33,7 @@ public class ListProductAction extends Action {
 		int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
 		int pageUnit  =  Integer.parseInt(getServletContext().getInitParameter("pageUnit"));
 		search.setPageSize(pageSize);
-		
-		search.setSearchCondition(CommonUtil.null2str(search.getSearchCondition()));
-		search.setSearchKeyword(CommonUtil.null2str(search.getSearchKeyword()));
-		
+
 		ProductService productService = new ProductServiceImpl();
 		Map<String, Object> map = productService.getProductList(search);
 		

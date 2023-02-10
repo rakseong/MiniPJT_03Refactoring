@@ -8,6 +8,9 @@ public class Search {
 	private String searchCondition;
 	private String searchKeyword;
 	private int pageSize;
+	private String orderStandard;
+	private int maxPrice;
+	private int minPrice;
 	
 	///Constructor
 	public Search() {
@@ -39,6 +42,30 @@ public class Search {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+
+	public String getOrderStandard() {
+		return orderStandard;
+	}
+
+	public void setOrderStandard(String orderStandard) {
+		this.orderStandard = orderStandard;
+	}
+
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+
+	public int getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
 	}
 
 	@Override

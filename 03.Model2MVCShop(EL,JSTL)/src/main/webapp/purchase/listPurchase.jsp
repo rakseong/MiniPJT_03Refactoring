@@ -50,7 +50,7 @@
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">회원명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">전화번호</td>
+		<td class="ct_list_b">수령인 전화번호</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">배송현황</td>
 		<td class="ct_line02"></td>
@@ -59,12 +59,19 @@
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
+	
 	<c:set var="i" value="0"/>
 	<c:forEach var="purchase" items="${list}">
 		<c:set var="i" value="${ i+1 }" />
+		<c:set var="tranCode" value="${fn:trim(purchase.tranCode)}"/>
 	 <tr class="ct_list_pop">
-		<td align="center">
-			<a href="/getPurchase.do?tranNo=${purchase.tranNo}">${i}</a>
+	 	<td align="center">
+	 	<c:if test="${tranCode eq '0' || tranCode eq '1'}">
+	 		<a href="/getPurchase.do?tranNo=${purchase.tranNo}">${i}</a>
+	 	</c:if>
+	 	<c:if test="${tranCode eq '2' || tranCode eq '3'}">
+			${i}
+		</c:if>
 		</td>
 		<td></td>
 		<td align="left">
@@ -76,7 +83,6 @@
 		<td align="left">${purchase.receiverPhone}</td>
 		<td></td>
 		<td align="left">현재
-		<c:set var="tranCode" value="${fn:trim(purchase.tranCode)}"/>
 		<c:if test="${tranCode eq 1}">
 			구매완료
 		</c:if>

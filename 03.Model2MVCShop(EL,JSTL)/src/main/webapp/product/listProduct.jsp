@@ -16,6 +16,11 @@ function fncGetList(currentPage){
 	document.getElementById("currentPage").value = currentPage;
 	document.detailForm.submit();
 }
+
+function fncGetOrderList(currentPage,orderStandard){
+	document.getElementById("orderStandard").value = orderStandard;
+	fncGetList(currentPage);
+}
 -->
 </script>
 </head>
@@ -46,6 +51,27 @@ function fncGetList(currentPage){
 	</tr>
 </table>
 
+<input id="orderStandard" name="orderStandard" value="${search.orderStandard}" type="hidden">
+<input type="hidden" id="orderStandard" name="orderStandard" value="${search.orderStandard}"/>
+
+<table width="20%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;" >
+	<tr>
+		<td>
+			<a href="javascript:fncGetOrderList('1','4');">이름순</a>
+		</td>
+		<td>
+			<a href="javascript:fncGetOrderList('1','1');">낮은 가격순</a>
+		</td>
+		<td>
+			<a href="javascript:fncGetOrderList('1','2');">높은 가격순</a>
+		</td>
+	<c:if test="${user.role eq 'admin'}">
+		<td>
+			<a href="javascript:fncGetOrderList('1','0');">등록 번호순</a>
+		</td>
+	</c:if>
+	</tr>
+</table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
@@ -53,7 +79,6 @@ function fncGetList(currentPage){
 			<select name="searchCondition" class="ct_input_g" style="width:80px">
 				<option value="0" ${!empty search.searchCondition && search.searchCondition eq '0' ? "selected" : "" }>상품번호</option>
 				<option value="1" ${!empty search.searchCondition && search.searchCondition eq '1' ? "selected" : "" }>상품이름</option>
-				<option value="2" ${!empty search.searchCondition && search.searchCondition eq '2' ? "selected" : "" }>가격</option>
 			</select>
 			<input type="text" name="searchKeyword" value="${search.searchKeyword}"  class="ct_input_g" style="width:200px; height:19px" />
 		</td>
@@ -65,7 +90,7 @@ function fncGetList(currentPage){
 						<img src="/images/ct_btnbg01.gif" width="17" height="23">
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncGetProductList('1');">검색</a>
+						<a href="javascript:fncGetList('1');">검색</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23">
@@ -107,10 +132,10 @@ function fncGetList(currentPage){
 		<td align="center">${i}</td>
 		<td></td>
 		<td align="left">
-		<c:if test="${product.proTranCode ne '0' && (empty user || (!empty user && user.role ne 'admin'))}">
+		<c:if test="${product.proTranCode ne '0' && param.menu eq 'manage'}">
 			${product.prodName}
 		</c:if>
-		<c:if test="${product.proTranCode eq '0' || (!empty user && user.role eq 'admin')}">
+		<c:if test="${product.proTranCode eq '0' || (product.proTranCode ne '0' && param.menu eq 'search')}">
 			<a href="/getProduct.do?productNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a>
 		</c:if>
 		</td>
