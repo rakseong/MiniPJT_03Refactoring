@@ -57,9 +57,21 @@ public class ProductDAO {
 		String sql = "SELECT p.*,NVL(t.tran_status_code,0) transaction_tran_code from product p, transaction t WHERE p.prod_no = t.prod_no(+) ";
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
-				sql += " AND prod_no LIKE '%" + search.getSearchKeyword()+"%'";
+				sql += " AND p.prod_no LIKE '%" + search.getSearchKeyword()+"%'";
 			} else if (search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
-				sql += " AND prod_name LIKE '%" + search.getSearchKeyword()+"%'";
+				sql += " AND p.prod_name LIKE '%" + search.getSearchKeyword()+"%'";
+			}
+			
+			if(search.getCategory().equals("4") && search.getCategory().equals("")) {
+				sql += " AND p.prod_category = "+ search.getCategory();
+			}else if(search.getCategory().equals("1") && search.getCategory().equals("")) {
+				sql += " AND p.prod_category = "+ search.getCategory();
+			}else if(search.getCategory().equals("2") && search.getCategory().equals("")) {
+				sql += " AND p.prod_category = "+ search.getCategory();
+			}else if(search.getCategory().equals("3") && search.getCategory().equals("")) {
+				sql += " AND p.prod_category = "+ search.getCategory();
+			}else {
+				
 			}
 			
 			if(search.getOrderStandard().equals("1") && !search.getOrderStandard().equals("")){
@@ -71,6 +83,8 @@ public class ProductDAO {
 			}else {
 				sql += " ORDER BY p.prod_name";
 			}
+			
+			
 		}
 		
 //		sql = "SELECT p.*,pc.*, NVL(t.tran_status_code,0) transaction_tran_code "
