@@ -62,18 +62,6 @@ public class ProductDAO {
 				sql += " AND p.prod_name LIKE '%" + search.getSearchKeyword()+"%'";
 			}
 			
-			if(search.getCategory().equals("4") && search.getCategory().equals("")) {
-				sql += " AND p.prod_category = "+ search.getCategory();
-			}else if(search.getCategory().equals("1") && search.getCategory().equals("")) {
-				sql += " AND p.prod_category = "+ search.getCategory();
-			}else if(search.getCategory().equals("2") && search.getCategory().equals("")) {
-				sql += " AND p.prod_category = "+ search.getCategory();
-			}else if(search.getCategory().equals("3") && search.getCategory().equals("")) {
-				sql += " AND p.prod_category = "+ search.getCategory();
-			}else {
-				
-			}
-			
 			if(search.getOrderStandard().equals("1") && !search.getOrderStandard().equals("")){
 				sql += " ORDER BY p.price ASC ";
 			}else if(search.getOrderStandard().equals("2") && !search.getOrderStandard().equals("")){
