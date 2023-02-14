@@ -98,6 +98,9 @@
 		<c:if test="${tranCode eq 2}">
 			<a href="/updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3">물건도착</a>
 		</c:if>
+		<c:if test="${tranCode eq 3}">
+			<a href="/comment/addComment.jsp">리뷰하기</a>
+		</c:if>
 		</td>
 	</tr>
 	<tr>

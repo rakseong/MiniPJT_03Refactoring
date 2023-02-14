@@ -78,7 +78,7 @@ public class UserDao {
 		return user;
 	}
 
-	public Map<String , Object> getUserList(Search search, int prodNo) throws Exception {
+	public Map<String , Object> getUserList(Search search) throws Exception {
 		
 		Map<String , Object>  map = new HashMap<String, Object>();
 		
