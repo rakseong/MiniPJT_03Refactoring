@@ -20,10 +20,11 @@ public class GetProductAction extends Action {
 		
 		request.setAttribute("vo", vo);
 		
+		
 		if(menu.equals("manage")) {
 			return "forward:/updateProductView.do?productNo="+vo.getProdNo() +"&menu="+menu;
 		}else {
-			return "forward:/product/getProduct.jsp"+"?menu="+menu;
+			return "forward:/product/getProduct.jsp";
 		}
 	}
 	

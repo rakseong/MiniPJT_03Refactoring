@@ -14,6 +14,7 @@ import java.util.Map;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.common.util.CommonUtil;
 import com.model2.mvc.common.util.DBUtil;
+import com.model2.mvc.service.domain.Comment;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 
@@ -153,6 +154,7 @@ public class ProductDAO {
 		con.close();
 		
 	}
+	
 	
 	//전체 record 개수 조회
 	private int getTotalCount(String sql) throws Exception {
