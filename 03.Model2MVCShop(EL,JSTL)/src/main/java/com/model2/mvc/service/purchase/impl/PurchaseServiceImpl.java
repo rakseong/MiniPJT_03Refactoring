@@ -50,5 +50,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void updateTranCode(Purchase purchase) throws Exception{
 		dao.updateTranCode(purchase);
 	}
+	
+	public void updateTranCodeByProd(Purchase pruchase)throws Exception{
+		dao.updateTranCodeByProd(pruchase);
+	}
 
 }
