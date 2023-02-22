@@ -159,7 +159,7 @@ function fncGetOrderList(currentPage,orderStandard){
 			<c:if test="${tranCode eq '1'}">
 				구매완료
 				<c:if test="${param.menu eq 'manage'}">
-					<a href="/updateTranCode.do?tranNo=${product.prodNo}&tranCode=2">배송하기</a>
+					<a href="/updateTranCodeByProd.do?prodNo=${product.prodNo}&tranCode=2">배송하기</a>
 				</c:if>
 			</c:if>
 			<c:if test="${tranCode eq '2'}">

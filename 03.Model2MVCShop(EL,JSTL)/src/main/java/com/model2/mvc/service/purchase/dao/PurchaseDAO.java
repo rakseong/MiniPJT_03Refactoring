@@ -139,6 +139,20 @@ public class PurchaseDAO{
 		con.close();
 	}
 	
+	public void updateTranCodeByProd(Purchase purchase) throws Exception{
+		Connection con = DBUtil.getConnection();
+		System.out.println(purchase.getTranNo());
+		System.out.println(purchase.getPurchaseProd().getProdNo());
+		PreparedStatement pstmt = con.prepareStatement("UPDATE transaction SET TRAN_STATUS_CODE =? "
+				+ " WHERE prod_no=?");
+		pstmt.setString(1, purchase.getTranCode());
+		pstmt.setInt(2,purchase.getPurchaseProd().getProdNo());
+		int i = pstmt.executeUpdate();	
+		if(i==1)
+			System.out.println("동작완료");
+		con.close();
+	}
+	
 	//전체 record 개수 조회
 	private int getTotalCount(String sql) throws Exception {
 		sql = "SELECT COUNT(*) "+

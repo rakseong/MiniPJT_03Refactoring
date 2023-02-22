@@ -20,7 +20,6 @@ public class UpdatePurchaseAction extends Action {
 		
 		purchase.setTranNo(tranNo);
 		purchase.setBuyer(new UserServiceImpl().getUser(buyerId));
-		purchase.setPaymentOption(buyerId);
 		purchase.setPaymentOption(request.getParameter("paymentOption"));
 		purchase.setReceiverName(request.getParameter("receiverName"));
 		purchase.setReceiverPhone(request.getParameter("receiverPhone"));
