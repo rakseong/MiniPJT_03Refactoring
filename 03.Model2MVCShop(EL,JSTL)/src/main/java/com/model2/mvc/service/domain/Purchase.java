@@ -17,6 +17,7 @@ public class Purchase {
 	private String receiverPhone;
 	private String tranCode;
 	private int tranNo;
+	private boolean commentActive;
 	
 	public Purchase(){
 	}
@@ -88,14 +89,21 @@ public class Purchase {
 		this.tranNo = tranNo;
 	}
 	
+	public boolean isCommentActive() {
+		return commentActive;
+	}
+
+	public void setCommentActive(boolean commentActive) {
+		this.commentActive = commentActive;
+	}
+
 	@Override
 	public String toString() {
-		return "Purchase [buyer=" + buyer + ", divyAddr=" + divyAddr
-				+ ", divyDate=" + divyDate + ", divyRequest=" + divyRequest
-				+ ", orderDate=" + orderDate + ", paymentOption="
-				+ paymentOption + ", purchaseProd=" + purchaseProd
-				+ ", receiverName=" + receiverName + ", receiverPhone="
-				+ receiverPhone + ", tranCode=" + tranCode + ", tranNo="
-				+ tranNo + "]";
+		return "Purchase [buyer=" + buyer + ", divyAddr=" + divyAddr + ", divyDate=" + divyDate + ", divyRequest="
+				+ divyRequest + ", orderDate=" + orderDate + ", paymentOption=" + paymentOption + ", purchaseProd="
+				+ purchaseProd + ", receiverName=" + receiverName + ", receiverPhone=" + receiverPhone + ", tranCode="
+				+ tranCode + ", tranNo=" + tranNo + ", commentActive=" + commentActive + "]";
 	}
+
+	
 }

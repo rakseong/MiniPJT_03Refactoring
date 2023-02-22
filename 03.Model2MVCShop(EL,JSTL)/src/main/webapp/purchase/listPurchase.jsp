@@ -99,7 +99,9 @@
 			<a href="/updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3">물건도착</a>
 		</c:if>
 		<c:if test="${tranCode eq 3}">
-			<a href="/addCommentView.do?tranNo=${purchase.tranNo}&prodNo=${purchase.purchaseProd.prodNo}">리뷰하기</a>
+			<c:if test="${!purchase.commentActive}">
+				<a href="/addCommentView.do?tranNo=${purchase.tranNo}&prodNo=${purchase.purchaseProd.prodNo}">리뷰하기</a>
+			</c:if>
 		</c:if>
 		</td>
 	</tr>

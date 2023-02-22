@@ -29,7 +29,7 @@ public class UpdateProductAction extends Action {
 		
 		request.setAttribute("vo",productService.getProduct(prodNo));
 		
-		return "forward:/product/getProduct.jsp?productNo="+prodNo+"&menu="+menu;
+		return "forward:/getProduct.do?productNo="+prodNo+"&menu=search";
 	}
 	
 }

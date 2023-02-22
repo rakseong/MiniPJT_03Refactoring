@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.model2.mvc.common.Search;
 import com.model2.mvc.common.util.DBUtil;
+import com.model2.mvc.service.comment.impl.CommentServiceImpl;
+import com.model2.mvc.service.domain.Comment;
 import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.product.dao.ProductDAO;
 import com.model2.mvc.service.user.dao.UserDao;
@@ -64,8 +67,13 @@ public class PurchaseDAO{
 		if(total != 0) {
 			while(rs.next()) {
 				Purchase pvo = new Purchase();
+				List<Comment> commentlist = new CommentServiceImpl().getCommentByTranNo(rs.getInt("TRAN_NO"));
+				if(commentlist.size() != 0) {
+					pvo.setCommentActive(true);
+				}
 				pvo.setTranNo(rs.getInt("TRAN_NO"));
 				pvo.setPurchaseProd(new ProductDAO().findProduct(rs.getInt("PROD_NO")));
+				System.out.println(rs.getString("BUYER_ID"));
 				pvo.setBuyer(new UserDao().findUser(rs.getString("BUYER_ID")));
 				pvo.setPaymentOption(rs.getString("PAYMENT_OPTION"));
 				pvo.setReceiverName(rs.getString("RECEIVER_NAME"));   
@@ -78,6 +86,7 @@ public class PurchaseDAO{
 				list.add(pvo);
 			}
 		}
+		
 		map.put("list", list);
 		
 		con.close();

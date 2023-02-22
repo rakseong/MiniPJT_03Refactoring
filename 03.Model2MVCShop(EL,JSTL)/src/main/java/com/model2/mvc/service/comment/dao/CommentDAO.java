@@ -34,17 +34,17 @@ public class CommentDAO {
 		con.close();
 	}
 	
-	public Comment findComment(int ComNo) throws Exception {
+	public Comment findComment(int comNo) throws Exception {
 		Connection con = DBUtil.getConnection();
 		PreparedStatement pstmt = con.prepareStatement("SELECT * FROM comments WHERE COMMENT_ID=?");
-		pstmt.setInt(1, ComNo);
+		pstmt.setInt(1, comNo);
 		
 		ResultSet rs = pstmt.executeQuery();
 		
 		Comment comment = new Comment();
 		
 		while(rs.next()) {
-			comment.setCommentId(ComNo);
+			comment.setCommentId(comNo);
 			comment.setCommentDetail(rs.getString("COMMENT_DETAIL"));
 			comment.setCommentRegDate(rs.getDate("COMMENT_REG_DATE"));
 			comment.setProdGrade(rs.getInt("PROD_GRADE"));
@@ -54,6 +54,30 @@ public class CommentDAO {
 		}
 		con.close();
 		return comment;
+	}
+	
+	public List<Comment> findCommentByTranNo(int tranNo) throws Exception {
+		Connection con = DBUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement("SELECT * FROM comments WHERE TRAN_NO=?");
+		pstmt.setInt(1, tranNo);
+		
+		ResultSet rs = pstmt.executeQuery();
+		List<Comment> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			Comment comment = new Comment();
+			
+			comment.setCommentId(rs.getInt("COMMENT_ID"));
+			comment.setCommentDetail(rs.getString("COMMENT_DETAIL"));
+			comment.setCommentRegDate(rs.getDate("COMMENT_REG_DATE"));
+			comment.setProdGrade(rs.getInt("PROD_GRADE"));
+			comment.setPurchase(new PurchaseDAO().findPurchase(rs.getInt("TRAN_NO")));
+			comment.setProdNo(rs.getInt("PROD_NO"));
+			comment.setUserId(rs.getString("USER_ID"));
+			list.add(comment);
+		}
+		con.close();
+		return list;
 	}
 	
 	public void updateCommentDetail(Comment comment) throws Exception{

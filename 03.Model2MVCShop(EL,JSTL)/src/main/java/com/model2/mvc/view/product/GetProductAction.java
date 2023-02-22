@@ -10,6 +10,7 @@ import com.model2.mvc.common.Search;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.comment.CommentService;
 import com.model2.mvc.service.comment.impl.CommentServiceImpl;
+import com.model2.mvc.service.domain.Comment;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
@@ -26,6 +27,9 @@ public class GetProductAction extends Action {
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		if(request.getAttribute("comment") != null) {
+			request.setAttribute("comment", (Comment)request.getAttribute("comment"));
+		}
 		
 		search.setCurrentPage(currentPage);
 		int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
@@ -41,12 +45,12 @@ public class GetProductAction extends Action {
 		Page resultPage = new Page(currentPage, ((Integer)map.get("totalCount")).intValue(),
 				pageUnit,pageSize);
 		
+		System.out.println(resultPage);
 		
-		request.setAttribute("resultpage", resultPage);
+		request.setAttribute("resultPage", resultPage);
 		request.setAttribute("list", map.get("list"));
 		request.setAttribute("search", search);
 		request.setAttribute("vo", vo);
-		
 		
 		if(menu.equals("manage")) {
 			return "forward:/updateProductView.do?productNo="+vo.getProdNo() +"&menu="+menu;
