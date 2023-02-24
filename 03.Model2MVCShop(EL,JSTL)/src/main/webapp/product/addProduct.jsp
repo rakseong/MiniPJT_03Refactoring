@@ -98,7 +98,7 @@
 		<td width="104" class="ct_write">상품이미지</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			${vo.fileName}
+			<img alt="상품 이미지" src="/images/uploadFiles/${vo.fileName}">
 		</td>
 	</tr>
 	<tr>

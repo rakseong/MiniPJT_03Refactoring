@@ -12,7 +12,7 @@ public interface CommentService {
 	
 	public Comment getComment(int comNo) throws Exception;
 	
-	public List<Comment> getCommentByTranNo(int tranNo) throws Exception;
+	public Comment getCommentByTranNo(int tranNo) throws Exception;
 	
 	public Map<String, Object> getCommentList(Search search,int prodNo) throws Exception;
 	

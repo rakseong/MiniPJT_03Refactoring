@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
 		return comment;
 	}
 	
-	public List<Comment> getCommentByTranNo(int tranNo) throws Exception{
+	public Comment getCommentByTranNo(int tranNo) throws Exception{
 		return commentDAO.findCommentByTranNo(tranNo);
 	}
 

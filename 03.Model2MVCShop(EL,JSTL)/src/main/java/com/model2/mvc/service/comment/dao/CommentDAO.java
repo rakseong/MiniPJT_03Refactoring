@@ -56,16 +56,15 @@ public class CommentDAO {
 		return comment;
 	}
 	
-	public List<Comment> findCommentByTranNo(int tranNo) throws Exception {
+	public Comment findCommentByTranNo(int tranNo) throws Exception {
 		Connection con = DBUtil.getConnection();
 		PreparedStatement pstmt = con.prepareStatement("SELECT * FROM comments WHERE TRAN_NO=?");
 		pstmt.setInt(1, tranNo);
 		
 		ResultSet rs = pstmt.executeQuery();
-		List<Comment> list = new ArrayList<>();
+		Comment comment = new Comment();
 		
 		while(rs.next()) {
-			Comment comment = new Comment();
 			
 			comment.setCommentId(rs.getInt("COMMENT_ID"));
 			comment.setCommentDetail(rs.getString("COMMENT_DETAIL"));
@@ -74,10 +73,9 @@ public class CommentDAO {
 			comment.setPurchase(new PurchaseDAO().findPurchase(rs.getInt("TRAN_NO")));
 			comment.setProdNo(rs.getInt("PROD_NO"));
 			comment.setUserId(rs.getString("USER_ID"));
-			list.add(comment);
 		}
 		con.close();
-		return list;
+		return comment;
 	}
 	
 	public void updateCommentDetail(Comment comment) throws Exception{

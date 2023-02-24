@@ -29,6 +29,8 @@ function fncGetOrderList(currentPage,orderStandard){
 
 <body bgcolor="#ffffff" text="#000000">
 
+<img alt="test" src="images/uploadFiles/test05.JPG">
+
 <div style="width:98%; margin-left:10px;">
 
 <form name="detailForm" action="/listProduct.do" method="post">

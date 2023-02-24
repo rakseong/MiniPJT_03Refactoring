@@ -102,6 +102,9 @@
 			<c:if test="${!purchase.commentActive}">
 				<a href="/addCommentView.do?tranNo=${purchase.tranNo}&prodNo=${purchase.purchaseProd.prodNo}">리뷰하기</a>
 			</c:if>
+			<c:if test="${purchase.commentActive}">
+				<a href="/updateCommentView.do?tranNo=${purchase.tranNo}">리뷰 수정하기</a>
+			</c:if>
 		</c:if>
 		</td>
 	</tr>

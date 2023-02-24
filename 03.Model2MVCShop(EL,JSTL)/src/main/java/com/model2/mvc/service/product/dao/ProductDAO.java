@@ -124,10 +124,9 @@ public class ProductDAO {
 		PreparedStatement pstmt = con.prepareStatement("INSERT INTO product "
 				+ " VALUES(seq_product_prod_no.nextval,?,?,"
 				+ " ?,?,?,sysdate)");
-		String[] manuDate = product.getManuDate().split("[-]");
 		pstmt.setString(1,product.getProdName());
 		pstmt.setString(2,product.getProdDetail());
-		pstmt.setString(3,manuDate[0]+manuDate[1]+manuDate[2]);
+		pstmt.setString(3,product.getManuDate());
 		pstmt.setInt(4,product.getPrice());
 		pstmt.setString(5,product.getFileName());
 		pstmt.executeUpdate();

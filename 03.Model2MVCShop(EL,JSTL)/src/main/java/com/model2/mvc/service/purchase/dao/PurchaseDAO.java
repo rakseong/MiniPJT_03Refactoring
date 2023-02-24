@@ -67,8 +67,8 @@ public class PurchaseDAO{
 		if(total != 0) {
 			while(rs.next()) {
 				Purchase pvo = new Purchase();
-				List<Comment> commentlist = new CommentServiceImpl().getCommentByTranNo(rs.getInt("TRAN_NO"));
-				if(commentlist.size() != 0) {
+				Comment comment = new CommentServiceImpl().getCommentByTranNo(rs.getInt("TRAN_NO"));
+				if(comment.getCommentId() != 0) {
 					pvo.setCommentActive(true);
 				}
 				pvo.setTranNo(rs.getInt("TRAN_NO"));
